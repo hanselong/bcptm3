@@ -11,18 +11,33 @@ namespace ShoppingCartDemo
             int subtotal = 0;
 
             // Display items for purchasing
+            //TODO: allow users to continue to purchase items 
             DisplayPurchaseOptions();
             userInput = GetPurchaseOption();
             subtotal = userInput;
+            if (userInput > 0 && userInput < 4)
+            {
+                // Display the summary of the transaction
+                double tax = (double)subtotal * (0.095);
+                Console.WriteLine("Subtotal: ${0}", subtotal);
+                Console.WriteLine("Tax (9.5%): ${0}", tax);
+                Console.WriteLine("Total: ${0}", subtotal + tax);
 
-            // Display the summary of the transaction
-            double tax = (double) subtotal * (0.095);
-            Console.WriteLine("Subtotal: ${0}", subtotal);
-            Console.WriteLine("Tax (9.5%): ${0}", tax);
-            Console.WriteLine("Total: ${0}", subtotal + tax);
+                Console.WriteLine("Press any key to end the program.");
+                Console.ReadKey();
 
-            Console.WriteLine("Press any key to end the program.");
-            Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid option between 1 and 3");
+                userInput = GetPurchaseOption();
+            }
+            if (userInput == 4)
+            {
+                Console.WriteLine("Press any key to end the program.");
+                Console.ReadKey();
+            }
+
         }
 
         /// <summary>
@@ -48,6 +63,8 @@ namespace ShoppingCartDemo
             try
             {
                 userInput = Convert.ToInt16(Console.ReadLine());
+
+               
             }
             catch
             {
